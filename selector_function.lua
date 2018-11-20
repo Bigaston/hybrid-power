@@ -57,6 +57,12 @@ function update_selector()
 	elseif player.dy == 8 then
 		player.select_y = 7
 		player.select_x = player.dx
+	elseif (player.dx == 13 and player.dy == 2) or (player.dx==14 and player.dy >= 1 and player.dy <= 3) or (player.dx == 15 and player.dy == 2) then
+		player.select_x = 14
+		player.select_y = 2
+	elseif (player.dx == 13 and player.dy == 6) or (player.dx==14 and player.dy >= 5 and player.dy <= 7) or (player.dx == 15 and player.dy == 6) then
+		player.select_x = 14
+		player.select_y = 6
 	else
 		player.select_x = 1
 	end
@@ -73,5 +79,9 @@ function draw_selector()
 		if seed[player.select_y+1][1] == true then
 			love.graphics.draw(selector.anim[selector.state], player.select_x * 80, player.select_y * 80)
 		end
+	end
+
+	if player.select_x == 14 then
+		love.graphics.draw(selector.anim[selector.state], player.select_x * 80, player.select_y * 80)
 	end
 end

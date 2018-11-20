@@ -10,6 +10,8 @@ function init_hud()
 	hud.light_blue = love.graphics.newImage("img/hud/HUD_Flower7.png")
 	hud.blue = love.graphics.newImage("img/hud/HUD_Flower8.png")
 	hud.green = love.graphics.newImage("img/hud/HUD_Flower9.png")
+	hud.explain = love.graphics.newImage("img/Tree.png")
+	hud.open_explain = false
 end
 
 function update_hud()
@@ -23,5 +25,7 @@ function draw_hud()
 		love.graphics.draw(player.in_hand_hud, 600, 15)
 	end
 
-	print_box(player.score, 640, 645, {255,255,255}, {0,0,0}, true)
+	if hud.open_explain == true then
+		love.graphics.draw(hud.explain, 976, 260)
+	end
 end

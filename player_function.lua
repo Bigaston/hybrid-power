@@ -14,6 +14,7 @@ function init_player()
 	player.in_hand = nil
 	player.in_hand_hud = nil
 	player.score = 0
+	player.wallet = 0
 end
 
 function update_player()
@@ -44,23 +45,30 @@ function update_player()
 end
 
 function player_action()
-	if player.select_x == 0 then
-		if seed[player.select_y+1][1] == true then
-			player.in_hand = seed[player.select_y+1][3]
-			player.in_hand_hud = seed[player.select_y+1][4]
-		end
-	elseif player.select_x >= 4 and player.select_x <= 11 then
-		if player.select_y >= 1 and player.select_y <= 7 then
-			if garden[player.select_y][player.select_x-3][1] == nil then
-				garden[player.select_y][player.select_x-3] = {player.in_hand, 0}
-				player.in_hand = nil
-				player.in_hand_hud = nil
-			else
-				if garden[player.select_y][player.select_x-3][2] >= 360 then
-					player.score = player.score + garden[player.select_y][player.select_x-3][1][2]
-				end
-				garden[player.select_y][player.select_x-3][1] = nil
+	if in_game == true then
+		if player.select_x == 0 then
+			if seed[player.select_y+1][1] == true then
+				player.in_hand = seed[player.select_y+1][3]
+				player.in_hand_hud = seed[player.select_y+1][4]
 			end
+		elseif player.select_x >= 4 and player.select_x <= 11 then
+			if player.select_y >= 1 and player.select_y <= 7 then
+				if garden[player.select_y][player.select_x-3][1] == nil then
+					garden[player.select_y][player.select_x-3] = {player.in_hand, 0}
+					player.in_hand = nil
+					player.in_hand_hud = nil
+				end
+			end
+		elseif player.select_x == 14 and player.select_y == 2 then
+			if hud.open_explain == false then
+				hud.open_explain = true
+			else
+				hud.open_explain = false
+			end
+		elseif player.select_x == 14 and player.select_y == 6 then
+			finish_game()
 		end
+	else
+		reset()
 	end
 end

@@ -47,3 +47,22 @@ function draw_garden()
 		end
 	end
 end
+
+function finish_game()
+	for lin=1,7 do
+		for col=1,8 do
+			if garden[lin][col][1] ~= nil then
+				player.score = player.score + garden[lin][col][1][2]
+			end
+		end
+	end
+
+	player.wallet = player.wallet + player.score
+
+	if player.wallet > 9999 then
+		player.wallet = 9999
+	end
+
+	menu.disp_score = true
+	in_game = false
+end

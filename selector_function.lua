@@ -78,10 +78,12 @@ function draw_selector()
 	if player.select_x == 0 then
 		if seed[player.select_y+1][1] == true then
 			love.graphics.draw(selector.anim[selector.state], player.select_x * 80, player.select_y * 80)
+		elseif player.select_y+1>1 and seed[player.select_y][1] == true and seed[player.select_y+1][1] == false then
+			love.graphics.draw(selector.anim[selector.state], player.select_x * 80, player.select_y * 80)
 		end
 	end
 
-	if player.select_x == 14 then
+	if player.select_x == 14 and (player.select_y == 6 or player.select_y == 2) then
 		love.graphics.draw(selector.anim[selector.state], player.select_x * 80, player.select_y * 80)
 	end
 end

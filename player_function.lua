@@ -48,8 +48,15 @@ function player_action()
 	if in_game == true then
 		if player.select_x == 0 then
 			if seed[player.select_y+1][1] == true then
-				player.in_hand = seed[player.select_y+1][3]
-				player.in_hand_hud = seed[player.select_y+1][4]
+				if seed[player.select_y+1][5] <= player.wallet then 
+					player.in_hand = seed[player.select_y+1][3]
+					player.in_hand_hud = seed[player.select_y+1][4]
+				end
+			elseif player.select_y+1>1 and seed[player.select_y][1] == true and seed[player.select_y+1][1] == false then
+				if player.wallet >= seed[player.select_y+1][5] then
+					seed[player.select_y+1][1] = true
+					player.wallet = player.wallet - seed[player.select_y+1][5]
+				end
 			end
 		elseif player.select_x >= 4 and player.select_x <= 11 then
 			if player.select_y >= 1 and player.select_y <= 7 then

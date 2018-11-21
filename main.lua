@@ -8,6 +8,8 @@ require("hybrid_function")
 require("menu_function")
 require("discord_function")
 
+-- A ajouter les sauvegardes : https://love2d.org/forums/viewtopic.php?t=77821
+
 function reset()
 	in_game = true
 	player.score = 0
@@ -19,6 +21,7 @@ function love.load()
 	love.window.setMode(1280, 720)
 	love.window.setTitle("Hybrid Power")
 	pico8 = love.graphics.newFont("fonts/PICO-8.ttf", 32)
+	pico8_little = love.graphics.newFont("fonts/PICO-8.ttf", 16)
 	love.graphics.setFont(pico8)
 
 	background = love.graphics.newImage("img/world.png")
@@ -80,8 +83,8 @@ function print_box(pText, pX, pY, pCol, pColBox, pCentered)
 	love.graphics.print({pCol, pText}, 10+pX, 10+pY)
 end
 
-function print_center(pText, pX, pY, pCol)
-	pX = pX-((string.len(pText)*32)/2)
+function print_center(pText, pX, pY, pCol, pSize)
+	pX = pX-((string.len(pText)*pSize)/2)
 
 	love.graphics.print({pCol, pText}, 10+pX, 10+pY)
 end

@@ -14,7 +14,7 @@ function init_player()
 	player.in_hand = nil
 	player.in_hand_hud = nil
 	player.score = 0
-	player.wallet = 0
+	player.wallet = 9999
 end
 
 function update_player()
@@ -51,11 +51,12 @@ function player_action()
 				if seed[player.select_y+1][5] <= player.wallet then 
 					player.in_hand = seed[player.select_y+1][3]
 					player.in_hand_hud = seed[player.select_y+1][4]
+					player.wallet = player.wallet - seed[player.select_y+1][5]
 				end
 			elseif player.select_y+1>1 and seed[player.select_y][1] == true and seed[player.select_y+1][1] == false then
-				if player.wallet >= seed[player.select_y+1][5] then
+				if player.wallet >= seed[player.select_y+1][6] then
 					seed[player.select_y+1][1] = true
-					player.wallet = player.wallet - seed[player.select_y+1][5]
+					player.wallet = player.wallet - seed[player.select_y+1][6]
 				end
 			end
 		elseif player.select_x >= 4 and player.select_x <= 11 then

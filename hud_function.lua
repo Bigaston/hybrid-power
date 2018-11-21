@@ -12,6 +12,7 @@ function init_hud()
 	hud.green = love.graphics.newImage("img/hud/HUD_Flower9.png")
 	hud.explain = love.graphics.newImage("img/Tree.png")
 	hud.open_explain = false
+	hud.coin = love.graphics.newImage("img/Coins.png")
 end
 
 function update_hud()
@@ -20,6 +21,9 @@ end
 
 function draw_hud()
 	love.graphics.draw(hud.box, 590, 5)
+
+	love.graphics.draw(hud.coin, 1200, 0)
+	print_right(player.wallet.."$", 1200, 20, {0.1019,0.1098,0.1725,1}, 32)
 
 	if player.in_hand_hud ~= nil then
 		love.graphics.draw(player.in_hand_hud, 600, 15)

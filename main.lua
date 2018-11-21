@@ -8,7 +8,12 @@ require("hybrid_function")
 require("menu_function")
 require("discord_function")
 
--- A ajouter les sauvegardes : https://love2d.org/forums/viewtopic.php?t=77821
+--[[ TODO
+
+Sauvegardes : https://love2d.org/forums/viewtopic.php?t=77821
+Menu principal
+Musiques
+]]
 
 function reset()
 	in_game = true
@@ -87,4 +92,9 @@ function print_center(pText, pX, pY, pCol, pSize)
 	pX = pX-((string.len(pText)*pSize)/2)
 
 	love.graphics.print({pCol, pText}, 10+pX, 10+pY)
+end
+
+function print_right(pText, pX, pY, pCol, pSize)
+	pX = pX-(string.len(pText)*pSize)
+	love.graphics.print({pCol, pText}, pX, pY)
 end

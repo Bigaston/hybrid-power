@@ -1,5 +1,15 @@
-local ffi = require "ffi"
-local discordRPClib = ffi.load("discord-rpc")
+local requireAllDependenciesCallback = function()
+   ffi = require "ffi"
+  discordRPClib = ffi.load("discord-rpc")
+end;
+
+if pcall(requireAllDependenciesCallback) then
+    have_discord = true
+    print("DiscordRPC Include")
+else
+    have_discord = false
+    print("DiscordRPC Not Include")
+end
 
 ffi.cdef[[
 typedef struct DiscordRichPresence {

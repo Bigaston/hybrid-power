@@ -9,6 +9,7 @@ require("menu_function")
 require("discord_function")
 require("save_function")
 require("back_function")
+discordRPC = require("lib/discordRPC")
 
 --[[
 NEW SOUND EFFECT
@@ -57,7 +58,10 @@ function love.load()
 	init_selector()
 	init_player()
 	init_menu()
-	init_discord()
+
+	if have_discord then
+		init_discord()
+	end
 
 	load_data()
 	init_back()
@@ -69,6 +73,8 @@ function love.load()
 	sound = {}
 	sound.move_menu = love.audio.newSource("sound/menu_move.wav", "stream")
 	sound.plant = love.audio.newSource("sound/plant.wav", "stream")
+	sound.end_game = love.audio.newSource("sound/end_game.wav", "stream")
+	sound.grab_seed = love.audio.newSource("sound/end_game.wav", "stream")
 end
 
 function love.update()
@@ -79,7 +85,9 @@ function love.update()
 	end
 
 	if screen == "menu" then
-		update_discord()
+		if have_discord then
+			update_discord()
+		end
 	else
 		if in_game == true and disp_back == false then
 			update_player()
@@ -89,7 +97,9 @@ function love.update()
 		end
 
 		update_hud()
-		update_discord()
+		if have_discord then
+			update_discord()
+		end
 	end
 end
 

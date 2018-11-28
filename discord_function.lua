@@ -1,4 +1,3 @@
-discordRPC = require("lib/discordRPC")
 local appId = require("lib/gameID")
 
 -- Use discordRPC.lua by Joel Schumacher (see lib/LICENCE.md for more information)

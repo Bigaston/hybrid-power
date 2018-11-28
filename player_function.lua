@@ -4,8 +4,6 @@ function init_player()
 	player.y = 240
 	player.select_x = 1
 	player.select_y = 1
-	player.dx = 0
-	player.dy = 0
 	player.left = love.graphics.newImage("img/player/Player1.png")
 	player.right = love.graphics.newImage("img/player/Player2.png")
 	player.up = love.graphics.newImage("img/player/Player3.png")
@@ -14,7 +12,7 @@ function init_player()
 	player.in_hand = nil
 	player.in_hand_hud = nil
 	player.score = 0
-	player.wallet = 9999
+	player.wallet = 0
 end
 
 function update_player()
@@ -52,11 +50,13 @@ function player_action()
 					player.in_hand = seed[player.select_y+1][3]
 					player.in_hand_hud = seed[player.select_y+1][4]
 					player.wallet = player.wallet - seed[player.select_y+1][5]
+					-- add seed grab
 				end
 			elseif player.select_y+1>1 and seed[player.select_y][1] == true and seed[player.select_y+1][1] == false then
 				if player.wallet >= seed[player.select_y+1][6] then
 					seed[player.select_y+1][1] = true
 					player.wallet = player.wallet - seed[player.select_y+1][6]
+					-- add seed open
 				end
 			end
 		elseif player.select_x >= 4 and player.select_x <= 11 then
@@ -65,9 +65,11 @@ function player_action()
 					garden[player.select_y][player.select_x-3] = {player.in_hand, 0}
 					player.in_hand = nil
 					player.in_hand_hud = nil
+					sound.plant:play()
 				end
 			end
 		elseif player.select_x == 14 and player.select_y == 2 then
+			-- sign
 			if hud.open_explain == false then
 				hud.open_explain = true
 			else
@@ -77,6 +79,7 @@ function player_action()
 			finish_game()
 		end
 	else
+		-- rake
 		reset()
 	end
 end

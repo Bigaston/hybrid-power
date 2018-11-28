@@ -24,7 +24,6 @@ function update_hybrid(pLin, pCol)
 			if pCol < 8 then
 				test_flower = test_case(pLin, pCol+1, test_flower)
 			end
-
 			plant_hybrid(pLin, pCol, test_flower)
 		end
 	end
@@ -33,20 +32,28 @@ end
 function plant_hybrid(pLin, pCol, pTest)
 	if pTest[1] >= 2 then
 		garden[pLin][pCol] = {flower.orange, 0}
+		-- new hybrid
 	elseif pTest[2] >= 2 then
 		garden[pLin][pCol] = {flower.yellow, 0}
+		-- new hybrid
 	elseif pTest[3] >= 2 then
 		garden[pLin][pCol] = {flower.purple, 0}
+		-- new hybrid
 	elseif pTest[2] >= 1 and pTest[4] >= 1 then
 		garden[pLin][pCol] = {flower.grey, 0}
+		-- new hybrid
 	elseif pTest[5] >= 1 and pTest[1] >= 1 then
 		garden[pLin][pCol] = {flower.dark_blue, 0}
+		-- new hybrid
 	elseif pTest[5] >= 1 and pTest[2] >= 1 then
 		garden[pLin][pCol] = {flower.light_blue, 0}
+		-- new hybrid
 	elseif pTest[6] >= 1 and pTest[7] >= 1 then
 		garden[pLin][pCol] = {flower.blue, 0}
+		-- new hybrid
 	elseif pTest[5] >= 1 and pTest[8] >= 1 then
 		garden[pLin][pCol] = {flower.green, 0}
+		-- new hybrid
 	end
 end
 

@@ -65,4 +65,5 @@ function finish_game()
 
 	menu.disp_score = true
 	in_game = false
+	save_data()
 end

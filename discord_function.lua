@@ -7,7 +7,7 @@ function init_discord()
     discordRPC.initialize(appId, true)
     now = os.time(os.date("*t"))
     presence = {
-        details = "Playing Normal Mode",
+        details = "In the menu!",
         startTimestamp = now,
         largeImageKey = "logo",
         largeImageText = player.wallet.." in wallet!"
@@ -17,9 +17,15 @@ function init_discord()
 end
 
 function update_discord()
+    if screen == "menu" then
+        statut = "In the menu!"
+    else
+        statut = "Playing normal mode!"
+    end
+
     if nextPresenceUpdate < love.timer.getTime() then
         presence = {
-            details = "Playing Normal Mode",
+            details = statut,
             largeImageKey = "logo",
             startTimestamp = now,
             largeImageText = player.wallet.." in wallet!"

@@ -50,13 +50,13 @@ function player_action()
 					player.in_hand = seed[player.select_y+1][3]
 					player.in_hand_hud = seed[player.select_y+1][4]
 					player.wallet = player.wallet - seed[player.select_y+1][5]
-					-- add seed grab
+					sound.grab_seed:play()
 				end
 			elseif player.select_y+1>1 and seed[player.select_y][1] == true and seed[player.select_y+1][1] == false then
 				if player.wallet >= seed[player.select_y+1][6] then
 					seed[player.select_y+1][1] = true
 					player.wallet = player.wallet - seed[player.select_y+1][6]
-					-- add seed open
+					sound.unlock_seed:play()
 				end
 			end
 		elseif player.select_x >= 4 and player.select_x <= 11 then
@@ -69,17 +69,18 @@ function player_action()
 				end
 			end
 		elseif player.select_x == 14 and player.select_y == 2 then
-			-- sign
 			if hud.open_explain == false then
+				sound.info_open:play()
 				hud.open_explain = true
 			else
+				sound.info_close:play()
 				hud.open_explain = false
 			end
 		elseif player.select_x == 14 and player.select_y == 6 then
 			finish_game()
 		end
 	else
-		-- rake
+		sound.end_game:play()
 		reset()
 	end
 end

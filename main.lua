@@ -13,13 +13,7 @@ discordRPC = require("lib/discordRPC")
 
 --[[
 NEW SOUND EFFECT
-- Start menu x
-- Unlock seed x
-- Grab seed x
-- Rake & endgame x
-- Sign info open x
-- sign info close x
-- New hyrid x
+Not enouth money
 ]]
 
 function reset()
@@ -74,7 +68,12 @@ function love.load()
 	sound.move_menu = love.audio.newSource("sound/menu_move.wav", "stream")
 	sound.plant = love.audio.newSource("sound/plant.wav", "stream")
 	sound.end_game = love.audio.newSource("sound/end_game.wav", "stream")
-	sound.grab_seed = love.audio.newSource("sound/end_game.wav", "stream")
+	sound.grab_seed = love.audio.newSource("sound/grab_seed.wav", "stream")
+	sound.info_close = love.audio.newSource("sound/info_close.wav", "stream")
+	sound.info_open = love.audio.newSource("sound/info_open.wav", "stream")
+	sound.new_hybrid = love.audio.newSource("sound/end_game.wav", "stream")
+	sound.start_menu = love.audio.newSource("sound/start_menu.wav", "stream")
+	sound.unlock_seed = love.audio.newSource("sound/unlock_seed.wav", "stream")
 end
 
 function love.update()
@@ -122,7 +121,7 @@ function love.keypressed(key, scancode, isrepeat)
 	if scancode == "space" then
 		if screen == "menu" then
 			menu_action()
-			-- menu play
+			sound.start_menu:play()
 		else
 			if disp_back == true then
 				save_data()
@@ -176,7 +175,7 @@ function love.gamepadpressed(joystick, button)
 		if button == "a" then
 			if screen == "menu" then
 				menu_action()
-				-- menu play
+				sound.start_menu:play()
 			else
 				if disp_back == true then
 					save_data()
